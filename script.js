@@ -1,9 +1,31 @@
+function showAdditionalContent() {
+    setTimeout(function() {
+        document.getElementById('additional-content-placeholder').style.display = 'block';
+        
+        // Após mostrar a div, carregar o conteúdo adicional
+        loadAdditionalContent();
+    }, 4000); // Atraso de 4 segundos
+}
 
+// Função para carregar o conteúdo da div additional-content
+function loadAdditionalContent() {
+    var xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+            document.getElementById('additional-content-placeholder').innerHTML = xhr.responseText;
+        }
+    };
+    xhr.open('GET', 'additionalContent.html', true);
+    xhr.send();
+}
 
+// Chamar a função para mostrar a div additional-content com atraso
+showAdditionalContent();
 
-//*****tempo segurando o js****///
+// Adiciona um atraso de 3 segundos antes de executar o restante do código
 setTimeout(() => {
 
+    // Seu código JavaScript existente
     //*****carousel*********/
     const wrapper = document.querySelector(".wrapper");
     const carousel = document.querySelector(".carousel");
@@ -76,9 +98,6 @@ setTimeout(() => {
     wrapper.addEventListener("mouseenter", () => clearTimeout(timeoutId));
     wrapper.addEventListener("mouseleave", autoPlay);
 
-
-
-
     //***ler mais conteudo da select bg12 ** */
     function toggleContent(buttonId, contentId, pointsId, setaId) {
         var pontos = document.getElementById(pointsId);
@@ -99,8 +118,6 @@ setTimeout(() => {
         }
     }
 
-
-    
     document.getElementById('btnLeiaMais').addEventListener('click', function() {
         toggleContent('btnLeiaMais', 'mais01', 'pontos', 'seta01');
     });
@@ -149,9 +166,8 @@ setTimeout(() => {
     document.getElementById('btnLeiaMais15').addEventListener('click', function() {
         toggleContent('btnLeiaMais15', 'mais15', 'pontos15', 'seta15');
     });
-    
 
-    //*****relegio******/
+    //*****relogio******/
 
     let days = 0,
             hours = 17,
@@ -190,79 +206,62 @@ setTimeout(() => {
         }
 
         let time = setInterval(updateCountdown, 1000);
-    
 
-   
-       
+    //*****nomes que compraram o curso*****/
+    const nomes = [
+        "Guilherme Nathan Neri Souza",
+        "Fernanda Oliveira",
+        "Pedro Henrique Lima",
+        "Ana Clara Silva",
+        "Rafael Santos",
+        "Juliana Oliveira",
+        "Marcos Costa"
+    ];
 
+    function showFloatingDiv() {
+        const floatingDiv = document.getElementById('floatingDiv');
+        const randomNome = nomes[Math.floor(Math.random() * nomes.length)];
 
-//*****nomes que compraram o curso*****/
-        
-const nomes = [
-    "Guilherme Nathan Neri Souza",
-    "Fernanda Oliveira",
-    "Pedro Henrique Lima",
-    "Ana Clara Silva",
-    "Rafael Santos",
-    "Juliana Oliveira",
-    "Marcos Costa"
-];
+        floatingDiv.querySelector('.nomes').textContent = randomNome;
+        floatingDiv.style.display = 'block';
 
-function showFloatingDiv() {
-    const floatingDiv = document.getElementById('floatingDiv');
-    const randomNome = nomes[Math.floor(Math.random() * nomes.length)];
+        setTimeout(() => {
+            floatingDiv.style.display = 'none'; 
+        }, 2000);
+    }
 
-    
-    floatingDiv.querySelector('.nomes').textContent = randomNome;
+    setInterval(showFloatingDiv, 10000); // Chama showFloatingDiv a cada 10 segundos
+    window.onload = showFloatingDiv; // Exibe a div quando a página carrega
 
-    floatingDiv.style.display = 'block';
+    //buntons*************************
 
-    setTimeout(() => {
-        floatingDiv.style.display = 'none'; 
-    }, 2000);
-}
+    //botão linha 82 colocar direto o link nele pois é uma tag <a>
 
-setInterval(showFloatingDiv, 10000); // Chama showFloatingDiv a cada 10 segundos
-window.onload = showFloatingDiv; // Exibe a div quando a página carrega
-        
- 
+    //botão linha 154
+    function irParaLink() {
+        // Altere a URL abaixo para o link desejado
+        window.location.href = "https://www.youtube.com/";
+    }
+
+    //botão linha 589
+    function irParaLink2() {
+        // Altere a URL abaixo para o link desejado
+        window.location.href = "https://www.youtube.com/";
+    }
+
+    //botão linha 637
+    function irParaLink3() {
+        // Altere a URL abaixo para o link desejado
+        window.location.href = "https://www.youtube.com/";
+    }
+
+    //botão linha 750 (bg10)colocar direto o link nele pois é uma tag <a>
+    function irParaLink4() {
+        window.location.href = "https://www.youtube.com/";
+    }
 
 }, 3000);
 
 
-
-
-
-//buntons*************************
-
-
-
-//botão linha 82 colocar direto o link nele pois é uma tag <a>
-
-
-//botão linha 154
-function irParaLink() {
-    // Altere a URL abaixo para o link desejado
-    window.location.href = "https://www.youtube.com/";
-}
-
-//botão linha 589
-function irParaLink2() {
-    // Altere a URL abaixo para o link desejado
-    window.location.href = "https://www.youtube.com/";
-}
-
-//botão linha 637
-function irParaLink3() {
-    // Altere a URL abaixo para o link desejado
-    window.location.href = "https://www.youtube.com/";
-}
-
-
-//botão linha 750 (bg10)colocar direto o link nele pois é uma tag <a>
-
-function irParaLink4() {
-    window.location.href = "https://www.youtube.com/";
-}
 
 
